@@ -11,6 +11,6 @@ Problems are organized by topic.
 | # | Problem           | Topic  | Solution |
 | - | ----------------- | ------ | -------- |
 | 1 | Two Sum           | Arrays | C        |
-| 2 | Valid Parentheses | Stack  | C        |
+| 2 | Binary Tree inorder traversal | trees  | C        |
 
 ---
