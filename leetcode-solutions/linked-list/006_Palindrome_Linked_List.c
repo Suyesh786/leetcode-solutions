@@ -7,38 +7,68 @@
  */
 bool isPalindrome(struct ListNode* head) {
 
-    // Find the middle of the linked list
+    // 0 elements
+    if(head==NULL){
+        return true;
+    }
+
+    // 1 element
+    if(head->next==NULL){
+        return true;
+    }
+
+    // 2 elements
+    if(head->next->next==NULL){
+        if (head->val == head->next->val){
+            return true;
+        }
+        return false;
+    }
+
+    // more than 2 
     struct ListNode* slow = head;
     struct ListNode* fast = head;
+    struct ListNode* part = slow;
+    struct ListNode* ptr = NULL,*curr=NULL,*temp=NULL;
 
-    while(fast != NULL && fast->next != NULL){
+    bool val = true;
+
+    //Moving slow to mid
+
+    while(fast != NULL  && fast->next != NULL){
+        part = slow;
         slow = slow->next;
         fast = fast->next->next;
+        
     }
 
-    // Reverse the second half
-    struct ListNode* prev = NULL;
-    struct ListNode* current = slow;
+    // Diving the list 
+    part->next = NULL;
 
-    while(current != NULL){
-        struct ListNode* next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
+    curr = slow;
+    temp = curr->next;
+    //Reverse the list
+    while(curr != NULL){ 
+        curr->next = ptr;   
+        ptr = curr; 
+          curr = temp; 
+        if(temp!=NULL){
+            temp = temp->next;
+        } 
     }
 
-    // Compare first half with reversed second half
-    struct ListNode* first = head;
-    struct ListNode* second = prev;
+    slow = ptr;
 
-    while(second != NULL){
-        if(first->val != second->val){
-            return false;
+    // check list 1 is same as list 2
+    struct ListNode*t1 = head,*t2 = slow;
+    while (t1 != NULL && t2 !=NULL){
+        if (t1->val!=t2->val){
+            val = false;
+            break;
         }
-
-        first = first->next;
-        second = second->next;
+        t1 = t1->next;
+        t2 = t2->next;
     }
 
-    return true;
+    return val;
 }
