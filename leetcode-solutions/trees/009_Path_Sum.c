@@ -11,7 +11,8 @@ bool hasPathSum(struct TreeNode* root, int targetSum) {
         return false;
     }
 
-    if(root->val == targetSum && root->left == NULL && root->right == NULL){
+    if(root->val
+       == targetSum && root->left == NULL && root->right == NULL){
         return true;
     }
 
